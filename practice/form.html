@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Event Registration</title>
+</head>
+<body>
+
+    <h1>Campus Event Registration Form</h1>
+
+    <form>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+        <br><br>
+
+        <label for="department">Department:</label>
+        <select id="department" name="department">
+            <option value="">Select Department</option>
+            <option value="cse">CSE</option>
+            <option value="cse-business-systems">CSBS</option>
+            <option value="it">IT</option>
+            <option value="ece">ECE</option>
+        </select>
+        <br><br>
+
+        <label>Year of Study:</label>
+        <input type="radio" name="year" value="1"> First Year
+        <input type="radio" name="year" value="2"> Second Year
+        <input type="radio" name="year" value="3"> Third Year
+        <input type="radio" name="year" value="4"> Fourth Year
+        <br><br>
+
+        <label for="event">Select Event:</label>
+        <select id="event" name="event">
+            <option value="coding">Coding Competition</option>
+            <option value="web-design">Web Design</option>
+            <option value="quiz">Technical Quiz</option>
+            <option value="cultural">Cultural Event</option>
+        </select>
+        <br><br>
+
+        <label for="date">Event Date:</label>
+        <input type="date" id="date" name="date">
+        <br><br>
+
+        <label for="message">Additional Information:</label>
+        <textarea id="message" name="message" rows="4" cols="30"></textarea>
+        <br><br>
+
+        <input type="checkbox" id="agree" name="agree" required>
+        <label for="agree">I agree to the event rules.</label>
+        <br><br>
+
+        <button type="submit">Register</button>
+        <button type="reset">Reset</button>
+    </form>
+
+</body>
+</html>

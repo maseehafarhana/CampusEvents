@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Event</title>
+
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+
+    <style>
+        body {
+            background-color: lightyellow;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            background-color: lightblue;
+            color: darkblue;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: darkred;
+        }
+
+        h2 {
+            color: darkblue;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        img {
+            border-radius: 10px;
+            margin: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        nav a {
+            background-color: darkblue;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: darkred;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid lightgray;
+        }
+
+        article {
+            padding: 10px;
+        }
+
+        iframe {
+            max-width: 100%;
+        }
+
+        ol, ul {
+            background-color: lightcyan;
+            padding: 25px 45px;
+        }
+
+        li {
+            padding: 5px;
+        }
+
+        footer {
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        caption {
+            font-size: 24px;
+            font-weight: bold;
+            color: darkred;
+            padding: 10px;
+        }
+
+        th {
+            background-color: darkblue;
+            color: white;
+        }
+
+        th, td {
+            border: 2px solid black;
+            padding: 12px;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: lightblue;
+        }
+
+        form {
+            background-color: lightcyan;
+            padding: 20px;
+            border: 2px solid darkblue;
+            max-width: 500px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: darkblue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+
+        hr {
+            border: 1px solid lightblue;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Hello World: Campus Event</h1>
+        <h2>Campus Events</h2>
+        <p>Find events happening on campus</p>
+
+        <img
+            src="https://tse4.mm.bing.net/th/id/OIP.BAx3AP7S-q1MDst1xn7FfAHaEH?r=0&w=2400&h=1334&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Campus event" width="500">
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+        <section id="program">
+            <h2>Program</h2>
+
+            <article>
+                <h3>Computer Science</h3>
+                <p>Explore programming, software and computer science.</p>
+
+                <img
+                    src="https://tse4.mm.bing.net/th/id/OIP.BAx3AP7S-q1MDst1xn7FfAHaEH?r=0&w=2400&h=1334&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Computer science program" width="300">
+            </article>
+
+            <hr>
+
+            <section id="video">
+                <h2>Video</h2>
+
+                <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/qGSzWVyykB8?autoplay=1&mute=1"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </section>
+
+            <hr>
+
+            <section id="event">
+                <h2>Event</h2>
+
+                <article>
+                    <h3>Campus</h3>
+                    <p>Explore programming, software and computer science.</p>
+                </article>
+            </section>
+
+            <section id="organizations">
+                <h2>Campus Organizations - Ordered List</h2>
+
+                <ol>
+                    <li>Computer Science Association</li>
+                    <li>Rotaract Club</li>
+                    <li>Entrepreneurship Club</li>
+                    <li>Arts and Cultural Club</li>
+                    <li>Sports Club</li>
+                </ol>
+            </section>
+
+            <hr>
+
+            <section id="clubs">
+                <h2>Campus Organizations - Unordered List</h2>
+
+                <ul>
+                    <li>Computer Science Association</li>
+                    <li>Rotaract Club</li>
+                    <li>Entrepreneurship Club</li>
+                    <li>Arts and Cultural Club</li>
+                    <li>Sports Club</li>
+                </ul>
+            </section>
+
+            <footer>
+                Contact us if you have any queries.
+            </footer>
+        </section>
+    </main>
+
+    <hr>
+
+    <table>
+        <caption>Campus Events</caption>
+
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Day</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Tech Talk</td>
+                <td>2023-10-15</td>
+                <td>Sunday</td>
+            </tr>
+            <tr>
+                <td>Hackathon</td>
+                <td>2023-11-05</td>
+                <td>Sunday</td>
+            </tr>
+            <tr>
+                <td>Art Exhibition</td>
+                <td>2023-12-01</td>
+                <td>Friday</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="2">For more information</td>
+                <td>Info</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+
+    <section id="registration">
+        <h1>Campus Event Registration Form</h1>
+
+        <form>
+            <label for="name">Full Name:</label><br>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone">
+            <br><br>
+
+            <label for="department">Department:</label><br>
+            <select id="department" name="department">
+                <option value="">Select Department</option>
+                <option value="cse">CSE</option>
+                <option value="cse-business-systems">CSBS</option>
+                <option value="it">IT</option>
+                <option value="ece">ECE</option>
+            </select>
+            <br><br>
+
+            <label>Year of Study:</label><br>
+            <input type="radio" name="year" value="1"> First Year
+            <input type="radio" name="year" value="2"> Second Year
+            <input type="radio" name="year" value="3"> Third Year
+            <input type="radio" name="year" value="4"> Fourth Year
+            <br><br>
+
+            <label for="event-select">Select Event:</label><br>
+            <select id="event-select" name="event">
+                <option value="coding">Coding Competition</option>
+                <option value="web-design">Web Design</option>
+                <option value="quiz">Technical Quiz</option>
+                <option value="cultural">Cultural Event</option>
+            </select>
+            <br><br>
+
+            <label for="date">Event Date:</label><br>
+            <input type="date" id="date" name="date">
+            <br><br>
+
+            <label for="message">Additional Information:</label><br>
+            <textarea id="message" name="message" rows="4" cols="30"></textarea>
+            <br><br>
+
+            <input type="checkbox" id="agree" name="agree" required>
+            <label for="agree">I agree to the event rules.</label>
+            <br><br>
+
+            <button type="submit">Register</button>
+            <button type="reset">Reset</button>
+        </form>
+    </section>
+
+</body>
+</html>

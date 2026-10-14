@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../Mini Tasks/task1.css">
+</head>
+
+<body>
+    <header>
+        <h1> Hello World: Campus Event</h1>
+        <h2>Campus events</h2>
+        <p>find events happening on campus</p>
+        <img src="https://tse4.mm.bing.net/th/id/OIP.BAx3AP7S-q1MDst1xn7FfAHaEH?r=0&w=2400&h=1334&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Kittens group" width="500">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <section id="program">
+            <h2> program </h2>
+            <article>
+                <h3>computer science</h3>
+                <p> explore programming , software and computer science</p>
+                <img src="https://tse4.mm.bing.net/th/id/OIP.BAx3AP7S-q1MDst1xn7FfAHaEH?r=0&w=2400&h=1334&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Kittens group" width="300">
+
+            </article>
+            <hr>
+            <section id="video">
+                <h1> video </h1>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/qGSzWVyykB8?si=CZ6wAQ9tKKzhuSAf&autoplay=1&mute=1"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </section>
+            <hr>
+            <section id="Event">
+                <h2> Event </h2>
+                <article>
+                    <h3>Campus</h3>
+                    <p> explore programming , software and computer science</p>
+                </article>
+            </section>
+            <section id="organizations">
+                <h2>Campus Organizations</h2>
+
+                <ol>
+                    <li>Computer Science Association</li>
+                    <li>Rotaract Club</li>
+                    <li>Entrepreneurship Club</li>
+                    <li>Arts and Cultural Club</li>
+                    <li>Sports Club</li>
+                </ol>
+            </section>
+            <hr>
+            <section id="organizations">
+                <h2>Campus Organizations</h2>
+
+                <ul>
+                    <li>Computer Science Association</li>
+                    <li>Rotaract Club</li>
+                    <li>Entrepreneurship Club</li>
+                    <li>Arts and Cultural Club</li>
+                    <li>Sports Club</li>
+                </ul>
+            </section>
+            <footer>
+                Contact if any query
+            </footer>
+    </main>
+    <hr>
+    <table border="3">
+        <caption>Campus Events</caption>
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>day</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tech Talk</td>
+                <td>2023-10-15</td>
+                <td>monday</td>
+            </tr>
+            <tr>
+                <td>Hackathon</td>
+                <td>2023-11-05</td>
+                <td>tuesday</td>
+            </tr>
+            <tr>
+                <td>Art Exhibition</td>
+                <td>2023-12-01</td>
+                <td>wednesday</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">For more information </td>
+                <td rowspan="2">info</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campus Event Registration</title>
+    </head>
+
+    <body>
+
+        <h1>Campus Event Registration Form</h1>
+
+        <form>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone">
+            <br><br>
+
+            <label for="department">Department:</label>
+            <select id="department" name="department">
+                <option value="">Select Department</option>
+                <option value="cse">CSE</option>
+                <option value="cse-business-systems">CSBS</option>
+                <option value="it">IT</option>
+                <option value="ece">ECE</option>
+            </select>
+            <br><br>
+
+            <label>Year of Study:</label>
+            <input type="radio" name="year" value="1"> First Year
+            <input type="radio" name="year" value="2"> Second Year
+            <input type="radio" name="year" value="3"> Third Year
+            <input type="radio" name="year" value="4"> Fourth Year
+            <br><br>
+
+            <label for="event">Select Event:</label>
+            <select id="event" name="event">
+                <option value="coding">Coding Competition</option>
+                <option value="web-design">Web Design</option>
+                <option value="quiz">Technical Quiz</option>
+                <option value="cultural">Cultural Event</option>
+            </select>
+            <br><br>
+
+            <label for="date">Event Date:</label>
+            <input type="date" id="date" name="date">
+            <br><br>
+
+            <label for="message">Additional Information:</label>
+            <textarea id="message" name="message" rows="4" cols="30"></textarea>
+            <br><br>
+
+            <input type="checkbox" id="agree" name="agree" required>
+            <label for="agree">I agree to the event rules.</label>
+            <br><br>
+
+            <button type="submit">Register</button>
+            <button type="reset">Reset</button>
+        </form>
+        <hr>
+    </body>
+
+    </html>
