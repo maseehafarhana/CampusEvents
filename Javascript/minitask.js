@@ -271,7 +271,7 @@ if (typeof document !== "undefined") {
         let name = document.getElementById("name").value;
         let email = document.getElementById("email").value;
 
-        // Task 4: Error and success messages
+    // Task 4: Error and success messages
         let result = document.getElementById("result");
         if (name === "" || email === "") {
             result.textContent = "Please fill in all fields!";
