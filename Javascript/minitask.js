@@ -148,26 +148,34 @@ let userm = {
 let citys= user.address?.citys ?? "city not available";
 console.log(citys);
 
-//scope, hoisting and closure
+//module 10
 //task1 - create global varibal and print inside the fun
 var names = "Massu"
-function showName() {
+function showGlobalName() {
     console.log(names);
 }
-showName();
+showGlobalName();
 
 //task2 - create an if block with let and var
 if (true) {
     let m = 10;
-    let n = 20;
+    var n = 20;
 }
 console.log(n);
-console.log(m);
+try {
+    console.log(m);
+} catch (error) {
+    console.log("m is block-scoped");
+}
 
 //task3 - Task 3: Predict var and let behavior before declaration
 console.log(q); 
 var q = 10;
-console.log(w); 
+try {
+    console.log(w);
+} catch (error) {
+    console.log("w is in the temporal dead zone");
+}
 let w = 20;
 
 //Task 4: Create makeCounter() with a private variable
@@ -197,3 +205,78 @@ counter1();
 counter1(); 
 counter2(); 
 counter2();
+
+//module 11
+if (typeof document !== "undefined") {
+    //task 1
+    document.getElementById("heading").textContent =
+        "Upcoming Campus Events";
+
+    //Task 2: Add a highlight class to all event cards
+    let cards = document.querySelectorAll(".event-card");
+    cards.forEach(function(card) {
+        card.classList.add("highlight");
+    });
+
+    //Task 3: Read a name from input and display it
+    function showName() {
+        let name = document.getElementById("name").value;
+        document.getElementById("result").textContent =
+            "Hello, " + name;
+    }
+    document.getElementById("showNameButton").addEventListener("click", showName);
+
+    //Task 4: Create a card from an object and append it to the event list
+    let event = {
+        title: "Tech Fest",
+        date: "20 October 2026"
+    };
+    let card = document.createElement("div");
+    card.textContent = event.title + " - " + event.date;
+    document.getElementById("event-list").appendChild(card);
+
+    //Task 5: Add a Remove button to each generated card
+    function addEvent() {
+        let card = document.createElement("div");
+        card.textContent = "Tech Fest ";
+        let btn = document.createElement("button");
+        btn.textContent = "Remove";
+        btn.onclick = function() {
+            card.remove();
+        };
+        card.appendChild(btn);
+        document.getElementById("event-list").appendChild(card);
+    }
+    document.getElementById("addEventButton").addEventListener("click", addEvent);
+
+    //module 12
+    // Task 1: Click event to update status
+    let button = document.getElementById("btn");
+    let status = document.getElementById("status");
+    button.addEventListener("click", function () {
+        status.textContent = "Button clicked successfully!";
+    });
+
+    // Task 2: Live character count
+    let input = document.getElementById("message");
+    let count = document.getElementById("count");
+    input.addEventListener("input", function () {
+        count.textContent = input.value.length;
+    });
+
+    // Task 3: Registration form without page reload
+    let form = document.getElementById("registerForm");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+
+        // Task 4: Error and success messages
+        let result = document.getElementById("result");
+        if (name === "" || email === "") {
+            result.textContent = "Please fill in all fields!";
+        } else {
+            result.textContent = "Registration successful!";
+        }
+    });
+}
