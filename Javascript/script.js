@@ -179,6 +179,14 @@ console.log(name);
 
 //event loop
 console.log("Shakeel");
-setTimeout(() => console.log("Nithya"),0);
+setTimeout(() => console.log("Nithya"), 0);
 Promise.resolve().then(() => console.log("Jessita"));
 console.log("Farhana");
+console.log("Maseeha");
+let intervalId = setInterval(() => {
+    console.log("Massu");
+}, 500);
+setTimeout(() => {
+    clearInterval(intervalId);
+    console.log("Interval stopped");
+}, 3000);
