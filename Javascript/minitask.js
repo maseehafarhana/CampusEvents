@@ -280,3 +280,18 @@ if (typeof document !== "undefined") {
         }
     });
 }
+
+//module 13
+//task 1 - predict the output of the following code snippet 
+console.log("One");
+setTimeout(() => console.log("Two"),0);
+console.log("Three");
+
+//task 2 - change 0 to 500, what changes and what stays the same
+console.log("four");
+setTimeout(() => console.log("five"),500);
+console.log("six");
+
+//task 3 - create a "registration received" messsage then a delayed confirmation
+console.log("Registration received");
+setTimeout(() => console.log("Registration confirmed"), 2000);  
