@@ -190,3 +190,30 @@ setTimeout(() => {
     clearInterval(intervalId);
     console.log("Interval stopped");
 }, 3000);
+
+//module 15
+//promise
+function registerStudent(isSuccessful){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (isSuccessful) {
+                resolve("Registration confirmed");
+            } else {
+                reject(new Error("Registration failed"));
+            }
+        }, 1000);
+    });
+}
+registerStudent(true)
+    .then(message => console.log(message))
+    .catch(error => console.error(error.message));
+
+//module16
+//async
+async function getMessage() {
+    return "Hello";
+}
+getMessage().then((message) => {
+    console.log(message);
+    document.getElementById("async-message").textContent = message;
+});
