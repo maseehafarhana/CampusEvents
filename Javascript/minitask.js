@@ -295,3 +295,13 @@ console.log("six");
 //task 3 - create a "registration received" messsage then a delayed confirmation
 console.log("Registration received");
 setTimeout(() => console.log("Registration confirmed"), 2000);  
+
+//module14
+// TASK 1 -predict the output of the following code snippet nd task2 classify
+console.log("Start"); //1st
+setTimeout(() => console.log("Timer"), 0); // 4th
+Promise.resolve().then(() => console.log("promise")); // 3rd
+console.log("Finish"); //2nd
+
+ //task 3 - explain why timer does not run immediately
+ 
