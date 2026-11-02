@@ -1,16 +1,23 @@
-# React + Vite
+# CampusConnect React Project
 
-This template provides a minimal setup to get React working in Vite with HMR and ESLint rules.
+CampusConnect is a beginner-friendly campus event application built with React and Vite.
 
-Currently, two official plugins are available:
+Features include event cards with images, search with a 300 ms debounce, category filtering, sorting, favorites stored in localStorage, add-event and remove-event actions, event details, registration, and registration confirmation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run
 
-## React Compiler
+```powershell
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Validate
 
-## ESLint
+```powershell
+npm run build
+npm run lint
+```
 
-Run `npm run lint` to check the project with ESLint. The configuration includes the recommended JavaScript rules, React Hooks rules, and React Refresh rules.
+## Documentation
+
+See [PROJECT_DOCUMENTATION.md](../PROJECT_DOCUMENTATION.md) for the complete project report, file explanations, data flow, and beginner-friendly interview notes.

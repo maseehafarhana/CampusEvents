@@ -1,122 +1,107 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import { FavoritesProvider } from "./context/FavoritesContext";
+import EventDetailsPage from "./pages/EventDetails/EventDetailsPage";
+import EventsPage from "./pages/Events/EventsPage";
+import HomePage from "./pages/Home/HomePage";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import RegisterPage from "./pages/Register/RegisterPage";
+import "./App.css";
+import {
+  getEvents,
+  createEvent,
+  deleteEvent
+} from "./services/eventService";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
+  // Fetch events from JSON Server when the app mounts.
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const data = await getEvents();
+        setEvents(data);
+        setLoadError("");
+      } catch (error) {
+        console.error("Failed to load events:", error);
+        setLoadError(
+          "Could not load events. Please check whether JSON Server is running."
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadEvents();
+  }, []);
+
+  // Remove an event from the displayed list.
+  async function handleRemove(eventId) {
+    await deleteEvent(eventId);
+    setEvents(previousEvents =>
+      previousEvents.filter(event => String(event.id) !== String(eventId))
+    );
+  }
+
+  // Save a new event to JSON Server using POST.
+  async function handleCreateEvent(eventData) {
+    const savedEvent = await createEvent(eventData);
+
+    setEvents(previousEvents => [
+      ...previousEvents,
+      savedEvent
+    ]);
+
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <FavoritesProvider>
+      <BrowserRouter>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  events={events}
+                  loading={loading}
+                  error={loadError}
+                  onCreateEvent={handleCreateEvent}
+                  onRemove={handleRemove}
+                />
+              }
+            />
+            <Route
+              path="/events"
+              element={
+                <EventsPage
+                  events={events}
+                  loading={loading}
+                  error={loadError}
+                  onRemove={handleRemove}
+                  onCreateEvent={handleCreateEvent}
+                />
+              }
+            />
+            <Route
+              path="/events/:eventId"
+              element={<EventDetailsPage events={events} loading={loading} />}
+            />
+            <Route
+              path="/register/:eventId"
+              element={<RegisterPage events={events} loading={loading} />}
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </FavoritesProvider>
+  );
 }
-
-export default App
