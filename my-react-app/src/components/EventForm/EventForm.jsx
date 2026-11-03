@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import Input from "../Common/Input/input";
+import Select from "../Common/Select/select";
+import Textarea from "../Common/Textarea/textarea";
+import Button from "../Common/Button/button";
 
 const initialForm = {
   name: "",
@@ -8,8 +12,16 @@ const initialForm = {
   venue: ""
 };
 
-export default function EventForm({ onAdd, onCancel }) {
-  const [formData, setFormData] = useState(initialForm);
+export default function EventForm({ onAdd, onUpdate, onCancel, event = null }) {
+  const [formData, setFormData] = useState(
+    event ? {
+      name: event.name ?? event.title ?? "",
+      category: event.category ?? "TECH",
+      description: event.description ?? "",
+      date: event.date ?? "",
+      venue: event.venue ?? ""
+    } : initialForm
+  );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -42,8 +54,8 @@ export default function EventForm({ onAdd, onCancel }) {
     }
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(submitEvent) {
+    submitEvent.preventDefault();
 
     setMessage("");
     setError("");
@@ -61,16 +73,23 @@ export default function EventForm({ onAdd, onCancel }) {
     try {
       setSaving(true);
 
-      await onAdd({
+      const savedData = {
         name: formData.name.trim(),
         category: formData.category,
         description: formData.description.trim(),
         date: formData.date,
         venue: formData.venue.trim()
-      });
+      };
+
+      if (event && onUpdate) {
+        await onUpdate(event.id, savedData);
+        setMessage("Event updated successfully!");
+      } else {
+        await onAdd(savedData);
+        setMessage("Event added successfully!");
+      }
 
       setFormData(initialForm);
-      setMessage("Event added successfully!");
 
       nameRef.current?.focus();
     } catch (error) {
@@ -85,24 +104,24 @@ export default function EventForm({ onAdd, onCancel }) {
       <div className="form-heading">
         <div>
           <p className="form-eyebrow">CAMPUS CONNECT</p>
-          <h2>Add a New Event</h2>
+          <h2>{event ? "Edit Event" : "Add a New Event"}</h2>
           <p>Share an exciting event with your campus.</p>
         </div>
 
-        <button
+        <Button
           type="button"
           className="form-close"
           onClick={onCancel}
           aria-label="Close form"
         >
           ✕
-        </button>
+        </Button>
       </div>
 
       <form className="add-event-form" onSubmit={handleSubmit}>
         <div className="form-field">
           <label htmlFor="event-name">Event Title *</label>
-          <input
+          <Input
             ref={nameRef}
             id="event-name"
             name="name"
@@ -118,7 +137,7 @@ export default function EventForm({ onAdd, onCancel }) {
 
         <div className="form-field">
           <label htmlFor="event-category">Category *</label>
-          <select
+          <Select
             ref={categoryRef}
             id="event-category"
             name="category"
@@ -134,12 +153,12 @@ export default function EventForm({ onAdd, onCancel }) {
             <option value="SPORTS">SPORTS</option>
             <option value="DESIGN">DESIGN</option>
             <option value="GENERAL">GENERAL</option>
-          </select>
+          </Select>
         </div>
 
         <div className="form-field full-width">
           <label htmlFor="event-description">Description *</label>
-          <textarea
+          <Textarea
             ref={descriptionRef}
             id="event-description"
             name="description"
@@ -156,7 +175,7 @@ export default function EventForm({ onAdd, onCancel }) {
 
         <div className="form-field">
           <label htmlFor="event-date">Event Date *</label>
-          <input
+          <Input
             ref={dateRef}
             id="event-date"
             type="date"
@@ -172,7 +191,7 @@ export default function EventForm({ onAdd, onCancel }) {
 
         <div className="form-field">
           <label htmlFor="event-venue">Venue *</label>
-          <input
+          <Input
             ref={venueRef}
             id="event-venue"
             name="venue"
@@ -202,13 +221,13 @@ export default function EventForm({ onAdd, onCancel }) {
         )}
 
         <div className="form-actions full-width">
-          <button
+          <Button
             type="submit"
             className="form-submit-button"
             disabled={saving}
           >
-            {saving ? "Saving..." : "Save Event"}
-          </button>
+            {saving ? "Saving..." : event ? "Update Event" : "Save Event"}
+          </Button>
         </div>
       </form>
     </section>

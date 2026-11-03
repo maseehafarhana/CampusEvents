@@ -463,6 +463,15 @@ button {
   background: #ffe4e6;
 }
 
+.btn-edit {
+  color: #1e40af;
+  background: #dbeafe;
+}
+
+.btn-edit:hover {
+  background: #bfdbfe;
+}
+
 .btn-remove:hover {
   background: #fecdd3;
 }
@@ -1585,6 +1594,19 @@ body {
   padding: 16px 18px 14px;
 }
 
+.event-grid .event-actions {
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.event-grid .event-actions button,
+.event-grid .event-actions a {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
 .favorite-icon {
   position: absolute;
   top: 10px;
@@ -1883,4 +1905,43 @@ body {
   .event-detail-content {
     padding: 22px 20px;
   }
+}
+
+.registration-card .registration-success {
+  width: 100%;
+  max-width: none;
+  margin-top: 20px;
+  padding: 18px 20px 16px;
+  text-align: left;
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.registration-card .registration-success h2 {
+  margin: 0 0 12px;
+  color: #166534;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.registration-card .registration-success > p {
+  margin: 0 0 12px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.registration-card .registration-success ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #166534;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.registration-card .registration-success strong {
+  color: #166534;
+  font-weight: 700;
 }

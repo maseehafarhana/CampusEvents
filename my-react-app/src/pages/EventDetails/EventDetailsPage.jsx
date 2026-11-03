@@ -28,7 +28,7 @@ export default function EventDetailsPage({ events, loading }) {
     SPORTS: sportsImage,
     DESIGN: designImage,
   };
-  const eventImage = eventImages[category] ?? culturalImage;
+  const eventImage = event.image || eventImages[category] || culturalImage;
 
   return (
     <section className="events-section event-detail-page">
@@ -40,6 +40,11 @@ export default function EventDetailsPage({ events, loading }) {
           <img
             src={eventImage}
             alt={`${event.name ?? event.title} campus event`}
+            onError={imageElement => {
+              if (imageElement.currentTarget.src !== culturalImage) {
+                imageElement.currentTarget.src = culturalImage;
+              }
+            }}
           />
           <span>{event.category}</span>
         </div>

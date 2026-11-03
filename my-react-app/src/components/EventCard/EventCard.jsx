@@ -5,8 +5,9 @@ import culturalImage from "../../assets/cultural.webp";
 import sportsImage from "../../assets/download.webp";
 import techImage from "../../assets/saec.jpg";
 import designImage from "../../assets/OIP.jpg";
+import Button from "../Common/Button/button";
 
-function EventCard({ event, onRemove }) {
+function EventCard({ event, onRemove, onEdit }) {
   const [actionError, setActionError] = useState("");
   const { favorites, toggleFavorite } = useFavorites();
   const isFavorite = favorites.has(String(event.id));
@@ -17,7 +18,7 @@ function EventCard({ event, onRemove }) {
     SPORTS: sportsImage,
     DESIGN: designImage,
   };
-  const eventImage = imageByCategory[category] ?? culturalImage;
+  const eventImage = event.image || imageByCategory[category] || culturalImage;
 
   async function handleRemove() {
     setActionError("");
@@ -31,9 +32,17 @@ function EventCard({ event, onRemove }) {
   return (
     <article className="event-card">
       <div className="event-banner">
-        <img src={eventImage} alt={`${event.name ?? event.title} campus event`} />
+        <img
+          src={eventImage}
+          alt={`${event.name ?? event.title} campus event`}
+          onError={eventImageElement => {
+            if (eventImageElement.currentTarget.src !== culturalImage) {
+              eventImageElement.currentTarget.src = culturalImage;
+            }
+          }}
+        />
         <span>{event.category}</span>
-        <button
+        <Button
           type="button"
           className={isFavorite ? "favorite-icon active" : "favorite-icon"}
           onClick={() => toggleFavorite(event.id)}
@@ -41,7 +50,7 @@ function EventCard({ event, onRemove }) {
           title={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
           {isFavorite ? "♥" : "♡"}
-        </button>
+        </Button>
       </div>
 
       <div className="event-details">
@@ -63,12 +72,19 @@ function EventCard({ event, onRemove }) {
           <Link className="btn-primary" to={`/register/${event.id}`}>
             Register
           </Link>
-          <button
+          <Button
+            type="button"
+            className="btn-edit"
+            onClick={() => onEdit?.(event)}
+          >
+            Edit
+          </Button>
+          <Button
             className="btn-remove"
             onClick={handleRemove}
           >
             Remove Event
-          </button>
+          </Button>
         </div>
       </div>
     </article>

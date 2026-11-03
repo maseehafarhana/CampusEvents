@@ -1,0 +1,8 @@
+.common-button {
+  cursor: pointer;
+}
+
+.common-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}

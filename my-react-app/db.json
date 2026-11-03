@@ -1,0 +1,99 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "name": "Tech Fest 2026",
+      "category": "TECH",
+      "description": "Explore innovation and showcase your technical skills.",
+      "venue": "Auditorium",
+      "date": "2026-10-15"
+    },
+    {
+      "id": "2",
+      "name": "Cultural Day",
+      "category": "CULTURE",
+      "description": "Celebrate music, dance and art performances.",
+      "venue": "Main Hall",
+      "date": "2026-10-20"
+    },
+    {
+      "id": "3",
+      "name": "Inter-College Sports Meet",
+      "category": "SPORTS",
+      "description": "Compete, collaborate and showcase sportsmanship.",
+      "venue": "Sports Ground",
+      "date": "2026-10-28"
+    },
+    {
+      "id": "4",
+      "name": "Web Design Showcase",
+      "category": "DESIGN",
+      "description": "Present creative websites and learn modern UI design.",
+      "venue": "Design Studio",
+      "date": "2026-11-05"
+    }
+  ],
+  "registrations": [
+    {
+      "name": "Maseeha Farhana",
+      "email": "em@gmail.com",
+      "department": "Information Technology",
+      "year": "2",
+      "event": "Cultural Day",
+      "attendance": "In person",
+      "accessibilitySupport": true,
+      "message": "erttyuuj",
+      "createdAt": "2026-11-03T06:46:12.247Z",
+      "id": "_u5Jj0DjMDs"
+    },
+    {
+      "name": "Maseeha Farhana",
+      "email": "em@gmail.com",
+      "department": "Electronics",
+      "year": "2",
+      "event": "Cultural Day",
+      "attendance": "In person",
+      "accessibilitySupport": false,
+      "message": "",
+      "createdAt": "2026-11-03T06:48:35.630Z",
+      "id": "koJwqCltBSo"
+    },
+    {
+      "name": "Maseeha Farhana",
+      "email": "emghj@gmail.com",
+      "department": "Information Technology",
+      "year": "2",
+      "event": "Tech Fest 2026",
+      "attendance": "In person",
+      "accessibilitySupport": true,
+      "message": "",
+      "createdAt": "2026-11-03T06:54:32.906Z",
+      "id": "v24KLGUPcek"
+    },
+    {
+      "name": "Maseeha Farhana",
+      "email": "emp@gmail.com",
+      "department": "Information Technology",
+      "year": "2",
+      "event": "Cultural Day",
+      "attendance": "In person",
+      "accessibilitySupport": false,
+      "message": "dfgv",
+      "createdAt": "2026-11-03T06:58:28.779Z",
+      "id": "GAEQ7Z4QjD0"
+    },
+    {
+      "name": "Maseeha Farhana",
+      "email": "emp@gmail.com",
+      "department": "Information Technology",
+      "year": "2",
+      "event": "Cultural Day",
+      "attendance": "In person",
+      "accessibilitySupport": true,
+      "message": "",
+      "createdAt": "2026-11-03T06:59:08.408Z",
+      "id": "zpWjqeuLkmQ"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

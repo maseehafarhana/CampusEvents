@@ -52,4 +52,54 @@ export function deleteEvent(eventId) {
   return Promise.resolve();
 }
 
-export const eventService = { getEvents, createEvent, deleteEvent };
+export function updateEvent(eventId, eventData) {
+  let updatedEvent = null;
+  events = events.map(event => {
+    if (String(event.id) === String(eventId)) {
+      updatedEvent = { ...event, ...eventData, id: event.id };
+      return updatedEvent;
+    }
+    return event;
+  });
+  return updatedEvent
+    ? Promise.resolve(updatedEvent)
+    : Promise.reject(new Error("Event not found."));
+}
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+let localRegistrations = [];
+
+export async function createRegistration(registrationData) {
+  try {
+    const response = await fetch(`${API_URL}/registrations`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(registrationData)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Registration failed with status ${response.status}.`);
+    }
+
+    return response.json();
+  } catch (error) {
+    if (error instanceof TypeError) {
+      const savedRegistration = {
+        ...registrationData,
+        id: localRegistrations.length + 1,
+        createdLocally: true
+      };
+      localRegistrations = [...localRegistrations, savedRegistration];
+      return savedRegistration;
+    }
+    throw error;
+  }
+}
+
+export const eventService = {
+  getEvents,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+  createRegistration
+};

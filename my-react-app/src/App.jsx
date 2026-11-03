@@ -12,6 +12,7 @@ import "./App.css";
 import {
   getEvents,
   createEvent,
+  updateEvent,
   deleteEvent
 } from "./services/eventService";
 
@@ -59,6 +60,15 @@ export default function App() {
 
   }
 
+  async function handleUpdateEvent(eventId, eventData) {
+    const savedEvent = await updateEvent(eventId, eventData);
+    setEvents(previousEvents =>
+      previousEvents.map(event =>
+        String(event.id) === String(eventId) ? savedEvent : event
+      )
+    );
+  }
+
   return (
     <FavoritesProvider>
       <BrowserRouter>
@@ -74,6 +84,7 @@ export default function App() {
                   error={loadError}
                   onCreateEvent={handleCreateEvent}
                   onRemove={handleRemove}
+                  onUpdateEvent={handleUpdateEvent}
                 />
               }
             />
@@ -86,6 +97,7 @@ export default function App() {
                   error={loadError}
                   onRemove={handleRemove}
                   onCreateEvent={handleCreateEvent}
+                  onUpdateEvent={handleUpdateEvent}
                 />
               }
             />

@@ -4,16 +4,21 @@ import EventCard from "../../components/EventCard/EventCard";
 import EventForm from "../../components/EventForm/EventForm";
 import useDebounce from "../../hooks/useDebounce";
 import { useFavorites } from "../../context/FavoritesContext";
+import Input from "../../components/Common/Input/input";
+import Select from "../../components/Common/Select/select";
+import Button from "../../components/Common/Button/button";
 import "./EventsPage.css";
 
 export default function EventsPage({
   events = [],
   onRemove,
   onCreateEvent,
+  onUpdateEvent,
   loading = false,
   error = ""
 }) {
   const [showForm, setShowForm] = useState(true);
+  const [editingEvent, setEditingEvent] = useState(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [sortBy, setSortBy] = useState("name");
@@ -89,21 +94,31 @@ export default function EventsPage({
       </div>
       {showForm && (
         <EventForm
+          event={editingEvent}
           onAdd={async eventData => {
             await onCreateEvent(eventData);
             setShowForm(false);
+            setEditingEvent(null);
           }}
-          onCancel={() => setShowForm(false)}
+          onUpdate={async (eventId, eventData) => {
+            await onUpdateEvent(eventId, eventData);
+            setShowForm(false);
+            setEditingEvent(null);
+          }}
+          onCancel={() => {
+            setShowForm(false);
+            setEditingEvent(null);
+          }}
         />
       )}
       {!showForm && (
-        <button
+        <Button
           type="button"
           className="add-button"
           onClick={() => setShowForm(true)}
         >
           + Add Event
-        </button>
+        </Button>
       )}
 
       {error && (
@@ -124,7 +139,7 @@ export default function EventsPage({
       ) : (
         <>
           <div className="event-controls">
-            <input
+            <Input
               type="search"
               value={search}
               onChange={event => setSearch(event.target.value)}
@@ -132,7 +147,7 @@ export default function EventsPage({
               aria-label="Search events by title or venue"
             />
 
-            <select
+            <Select
               value={category}
               onChange={event => setCategory(event.target.value)}
               aria-label="Filter by category"
@@ -142,20 +157,20 @@ export default function EventsPage({
                   {item === "All" ? "All Categories" : item}
                 </option>
               ))}
-            </select>
+            </Select>
 
-            <select
+            <Select
               value={sortBy}
               onChange={event => setSortBy(event.target.value)}
               aria-label="Sort events"
             >
               <option value="name">Name: A to Z</option>
               <option value="reverse">Name: Z to A</option>
-            </select>
+            </Select>
 
-            <button type="button" onClick={resetFilters}>
+            <Button type="button" onClick={resetFilters}>
               Reset
-            </button>
+            </Button>
           </div>
 
           <p>
@@ -171,6 +186,11 @@ export default function EventsPage({
                   key={event.id}
                   event={event}
                   onRemove={onRemove}
+                  onEdit={selectedEvent => {
+                    setEditingEvent(selectedEvent);
+                    setShowForm(true);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
                 />
               ))}
             </div>
