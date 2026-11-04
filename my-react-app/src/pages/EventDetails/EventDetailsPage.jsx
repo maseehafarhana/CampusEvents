@@ -3,6 +3,7 @@ import culturalImage from "../../assets/cultural.webp";
 import sportsImage from "../../assets/download.webp";
 import techImage from "../../assets/saec.jpg";
 import designImage from "../../assets/OIP.jpg";
+import CountdownTimer from "../../components/CountdownTimer/CountdownTimer";
 
 export default function EventDetailsPage({ events, loading }) {
   const { eventId } = useParams();
@@ -56,6 +57,10 @@ export default function EventDetailsPage({ events, loading }) {
             <div>
               <span>Date and time</span>
               <strong>{event.date}</strong>
+            </div>
+            <div>
+              <span>Starts in</span>
+              <CountdownTimer targetDate={event.date} />
             </div>
             <div>
               <span>Location</span>

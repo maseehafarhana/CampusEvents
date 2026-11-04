@@ -1,73 +1,50 @@
-let events = [
-  {
-    id: 1,
-    name: "Tech Fest 2026",
-    category: "TECH",
-    description: "Explore innovation and showcase your technical skills.",
-    venue: "Auditorium",
-    date: "2026-10-15",
-  },
-  {
-    id: 2,
-    name: "Cultural Day",
-    category: "CULTURE",
-    description: "Celebrate music, dance and art performances.",
-    venue: "Main Hall",
-    date: "2026-10-20",
-  },
-  {
-    id: 3,
-    name: "Inter-College Sports Meet",
-    category: "SPORTS",
-    description: "Compete, collaborate and showcase sportsmanship.",
-    venue: "Sports Ground",
-    date: "2026-10-28",
-  },
-  {
-    id: 4,
-    name: "Web Design Showcase",
-    category: "DESIGN",
-    description: "Present creative websites and learn modern UI design.",
-    venue: "Design Studio",
-    date: "2026-11-05",
-  },
-];
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+let localRegistrations = [];
+
+async function requestJson(url, options) {
+  const response = await fetch(url, options);
+
+  if (!response.ok) {
+    let message = `Request failed with status ${response.status}.`;
+    try {
+      const details = await response.json();
+      if (details.message) {
+        message = details.message;
+      }
+    } catch {
+      // Use the status-based message when the response has no JSON body.
+    }
+    throw new Error(message);
+  }
+
+  return response.status === 204 ? null : response.json();
+}
 
 export function getEvents() {
-  return Promise.resolve([...events]);
+  return requestJson(`${API_URL}/events`);
 }
 
 export function createEvent(eventData) {
-  const savedEvent = {
-    ...eventData,
-    id: events.length ? Math.max(...events.map(event => Number(event.id))) + 1 : 1,
-  };
-
-  events = [...events, savedEvent];
-  return Promise.resolve(savedEvent);
-}
-
-export function deleteEvent(eventId) {
-  events = events.filter(event => String(event.id) !== String(eventId));
-  return Promise.resolve();
+  return requestJson(`${API_URL}/events`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(eventData)
+  });
 }
 
 export function updateEvent(eventId, eventData) {
-  let updatedEvent = null;
-  events = events.map(event => {
-    if (String(event.id) === String(eventId)) {
-      updatedEvent = { ...event, ...eventData, id: event.id };
-      return updatedEvent;
-    }
-    return event;
+  return requestJson(`${API_URL}/events/${encodeURIComponent(eventId)}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(eventData)
   });
-  return updatedEvent
-    ? Promise.resolve(updatedEvent)
-    : Promise.reject(new Error("Event not found."));
 }
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
-let localRegistrations = [];
+export function deleteEvent(eventId) {
+  return requestJson(`${API_URL}/events/${encodeURIComponent(eventId)}`, {
+    method: "DELETE"
+  });
+}
 
 export async function createRegistration(registrationData) {
   try {

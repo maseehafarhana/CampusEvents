@@ -21,7 +21,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
-  // Fetch events from JSON Server when the app mounts.
+  // Fetch events from the network when the app mounts.
   useEffect(() => {
     async function loadEvents() {
       try {
