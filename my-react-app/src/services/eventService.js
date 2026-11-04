@@ -1,5 +1,4 @@
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
-let localRegistrations = [];
 
 async function requestJson(url, options) {
   const response = await fetch(url, options);
@@ -47,30 +46,11 @@ export function deleteEvent(eventId) {
 }
 
 export async function createRegistration(registrationData) {
-  try {
-    const response = await fetch(`${API_URL}/registrations`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(registrationData)
-    });
-
-    if (!response.ok) {
-      throw new Error(`Registration failed with status ${response.status}.`);
-    }
-
-    return response.json();
-  } catch (error) {
-    if (error instanceof TypeError) {
-      const savedRegistration = {
-        ...registrationData,
-        id: localRegistrations.length + 1,
-        createdLocally: true
-      };
-      localRegistrations = [...localRegistrations, savedRegistration];
-      return savedRegistration;
-    }
-    throw error;
-  }
+  return requestJson(`${API_URL}/registrations`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(registrationData)
+  });
 }
 
 export const eventService = {
