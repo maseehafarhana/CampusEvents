@@ -105,6 +105,18 @@
       "message": "rgh",
       "createdAt": "2026-11-04T05:17:37.111Z",
       "id": "gYNIM2lDGvI"
+    },
+    {
+      "name": "Maseeha Farhana",
+      "email": "bob@walmart.com",
+      "department": "Mechanical",
+      "year": "2",
+      "event": "Cultural Day",
+      "attendance": "In person",
+      "accessibilitySupport": false,
+      "message": "",
+      "createdAt": "2026-11-04T06:12:28.728Z",
+      "id": "BZBot9qtp1M"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
